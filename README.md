@@ -1,2 +1,2 @@
-# Simple JS game 
+# Fluppy colors
 
