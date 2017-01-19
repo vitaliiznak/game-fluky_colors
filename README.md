@@ -1,2 +1,2 @@
-# Fluppy colors
+# Fluky colors
 
