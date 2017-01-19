@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- use the font -->
+    <style>
+    body {
+        background-color: #202535;
+        font-family: 'Roboto', sans-serif;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+    
+    .green.square_wrapper .square {
+        background-color: #4ECC00;
+    }
+    
+    .purple.square_wrapper .square {
+        background-color: #9c27b0
+    }
+    
+    .red.square_wrapper > .square {
+        background-color: #FF0000;
+    }
+    
+    .yellow.square_wrapper > .square {
+        background-color: #ffee58;
+    }
+
+    .orange.square_wrapper > .square {
+        background-color: #f57c00;
+    }
+    
+    .blue.square_wrapper > .square {
+        background-color: #000099;
+    }
+    
+    .brown.square_wrapper > .square {
+        background-color: #795548;
+    }
+    
+    .square_wrapper {
+        position: absolute;
+        cursor: pointer;
+    }
+    
+    .square {
+        width: 88%;
+        height: 88%;
+        margin: 6%;
+        border: 2px solid #cacaca;
+        border-radius:10%;
+    }
+    
+    .playGround {
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    .no_btn {
+        background: none;
+        border: none;
+        font-size: 1.05em;
+        cursor: pointer;
+        color: #fff;
+        border-bottom: 3px solid transparent;
+    }
+    
+    .no_btn:focus {
+        outline: none;
+    }
+
+    .btn_simple{
+        background: none;
+        border: none;
+        font-size: 1.05em;
+        cursor: pointer;
+        color: #fff;
+        font-weight: 700;font-size:20px;border: 1px solid #686868;
+    }
+    
+    .no_btn.active {
+        border-bottom: 3px solid #f44336;
+        color: #f44336;
+    }
+
+    .game_view_wrapper {
+        max-width: 350px; margin: 0 auto; padding-top:10px;
+    }
+    ul > li{
+        padding-bottom: 8px;
+    }
+    
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- TUTORIAL -->
+    <div id="viewWrapper" class="game_view_wrapper" style="position: relative;">
+        
+    <!-- TUTORIAL -->
+
+
+        <div data-id="tutorial" style="
+            padding-top:50px;
+            color: #eaeaea;
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            height:100%;
+            background-color: rgba(34,38,63, 0.95);
+            z-index:100;
+            display:none;">
+            <i data-id="helpCloseBtn" style="color:#fff;font-style: normal;float:right;cursor:pointer;font-size: 150%;">X</i>
+            <h3 style="text-align:center;padding-top:10px;">Fluky Colors</h3>
+            <ul>
+                <li> Click the squares without mark X to change their color. </li>
+                <li> You can change color only once per a square and it's a random change. </li>
+                <li> Erase bunch of at least 3 adjacent squares. </li>
+                <li> Score points!</li>
+            </ul>
+        </div>
+
+
+        <!-- GAME OVER -->
+
+
+
+
+
+        <!-- GAME -->
+        <div style="position: relative; width:100%;margin-bottom:18px;">
+            <div style="font-size: 21px;color: #fafafa;">FLUKY COLORS</div>
+            <div style="display: inline-block;position: absolute; right:50px; top: 0;text-align: right ">
+                <div style="font-size: 12px;color: #eaeaea;"> 
+                    SCORE
+                </div> 
+               
+                <div data-id="scoreTxt" style="font-size: 21px;color: #fafafa;"> 
+                    0
+                </div> 
+            </div> 
+            <div style="display: inline-block;position: absolute; right:0; top: 0;text-align: right ">
+                <div style="font-size: 12px;color: #eaeaea;"> 
+                    BESTS
+                </div> 
+               
+                <div data-id="scoreTxt" style="font-size: 21px;color: #fafafa;"> 
+                    0
+                </div> 
+            </div>
+        </div>
+        <div style="text-align:right; margin-bottom:20px;"">
+            <button data-id="helpBtn" class="btn_simple" style="margin-right:20px;">? </button>
+            <button data-id="resumeBtn" class="btn_simple" >resume</button>
+        </div>
+        <div data-id="playGround" class="playGround">
+            <!-- <div class="line_ver" style="position: absolute;
+                                        top:10px; left: 20px;
+                                        height:100px;
+                                        width:3px;
+                                        background-color:#fff;
+                                        z-index:100;
+                                        border:1px solid #000;
+                                        border-radius:2px;"></div>
+
+            <div class="line_hor"></div> -->
+        </div>
+     
+        <div style="width: 100%;"></div>
+    </div>
+
+    <div id="squareTmpl" style="display:none;">
+        <div class="square_wrapper anim">
+            <div class="square">
+                <svg style="width: 50%; height: 50%; margin:25%;display: none;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 96 96" enable-background="new 0 0 96 96" xml:space="preserve">
+                    <polygon opacity="1" style="fill:white;stroke:#313131;stroke-width:8;" points="96,14 82,0 48,34 14,0 0,14 34,48 0,82 14,96 48,62 82,96 96,82 62,48 " ></polygon>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.1/velocity.min.js"></script>
+    <script src="polifill.js"></script>
+    <script src="helpers.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
