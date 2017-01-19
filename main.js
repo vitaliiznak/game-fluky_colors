@@ -444,7 +444,7 @@ $('[data-id="helpBtn"]').on('click', help);
 $('[data-id="resumeBtn"]').on('click', resume);;
 
 function resume() {
-    console.log('resume');
+    location.reload();
 }
 $('[data-id="helpCloseBtn"]').on('click', function() {
     $('[data-id="tutorial"]').hide();
