@@ -219,12 +219,9 @@ const mouseMoveThrottle = throttle((ev) => {
 
 const cancelErase = () => $playGround.off('mousemove touchmove', mouseMoveThrottle);
 $(document)
-    .on('mouseup touchend', cancelErase)
-    .on('mouseleave touchleave', cancelErase);
+    .on('mouseup touchend mouseleave touchleave', cancelErase);
 $(document.body)
-    .on('mouseup touchend', cancelErase)
-    .on('mouseleave touchleave', cancelErase);
-
+    .on('mouseup touchend mouseleave touchleave', cancelErase);
 
 function playgroundOnCLickListener(ev) {
     let clientX;
